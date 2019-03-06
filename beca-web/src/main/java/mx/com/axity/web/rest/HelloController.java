@@ -38,7 +38,7 @@ public class HelloController {
     public ResponseEntity<UserTO> getIdUser(@RequestParam(value="id")int id) {
         LOG.info("Se invoca /userid");
         LOG.info(id);
-        UserTO users = this.IbecaFacade.getIdUser(id);
+        UserTO users = this.IbecaFacade.getIdUser((long) id);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
     //METODO PARA ELIMINAR UN REGISTRO EN BASE A SU ID
@@ -62,8 +62,16 @@ public class HelloController {
     public ResponseEntity<UserTO> updateUser(@RequestBody UserDO userDO) {
         LOG.info("Se invoca /userupdate");
         LOG.info(userDO);
-        this.IbecaFacade.updateUser(userDO);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if(userDO.getId()!=null){
+            this.IbecaFacade.updateUser(userDO);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        }
+
+
+
+
 
         /*{
         	"name":"NOMBRE",

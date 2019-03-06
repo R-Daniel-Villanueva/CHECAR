@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BecaServiceImpl implements IbecaService {
+public class becaServiceImpl implements IbecaService {
 
-    static final Logger LOG = LogManager.getLogger(BecaServiceImpl.class);
+    static final Logger LOG = LogManager.getLogger(becaServiceImpl.class);
 
     @Autowired
     UserDAO userDAO;

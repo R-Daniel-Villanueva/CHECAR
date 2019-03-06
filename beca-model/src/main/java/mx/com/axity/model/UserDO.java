@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class UserDO {
 
     @Id//PRIMARY KEY
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="users_id_seq")//Autoincrement
-    @SequenceGenerator(name="users_id_seq", sequenceName="users_id_seq", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="usersSeq")//Autoincrement
+    @SequenceGenerator(name="usersSeq", sequenceName="users_id_seq", allocationSize=1)
     @Column(name = "id")
     private Long id;
     @Column(name = "ds_name")

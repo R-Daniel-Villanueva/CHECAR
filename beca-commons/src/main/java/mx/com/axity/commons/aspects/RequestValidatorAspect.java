@@ -22,7 +22,7 @@ public class RequestValidatorAspect {
     @Around(value = "execution(* mx.com.axity.web.rest.*.*(..))  && args(..)")
     public ResponseEntity execute(ProceedingJoinPoint joinPoint) {
         ResponseEntity result;
-        ErrorTO errorTO =new ErrorTO();
+        ErrorTO errorTO;
         try {
             LOG.info("Access");
             LOG.info(String.format("Execution: %s", joinPoint.getSignature()));
@@ -34,7 +34,13 @@ public class RequestValidatorAspect {
             LOG.info("Exception: {}", e.getMessage());
             //throw new BusinessException("Error", e);
             if(e instanceof NoSuchElementException){
+                errorTO =new ErrorTO();
+                errorTO.setErrorCode((long)25);
                 errorTO.setErrorMessage("EL ELEMENTO NO EXISTE");
+            }else{
+                errorTO =new ErrorTO();
+                errorTO.setErrorCode((long)50);
+                errorTO.setErrorMessage("ERROR EN EL SERVIDOR");
             }
             return new ResponseEntity<ErrorTO>(errorTO, HttpStatus.NOT_FOUND);
         }

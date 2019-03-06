@@ -13,7 +13,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 @Component
-public class BecaFacade implements IbecaFacade {
+public class becaFacade implements IbecaFacade {
 
 
     @Autowired
